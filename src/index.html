@@ -7,6 +7,41 @@
     <title>Weather App</title>
   </head>
   <body>
-    <h1>just making sure this works</h1>
+
+    <div class="mylabel">
+      <input type="checkbox" id="coding" />
+      <div class="slidinggroove">
+        <span class="ontext">&#xb0 F</span><span class="offtext">&#xb0 C</span>
+      </div>
+      <label class="mylabel" for="coding" name="skills"
+        ><p class="labelterm"></p
+      ></label>
+    </div>
+
+    
+    <div class="formContainer">
+      <form action="" method="post" id="form">
+        <input
+          type="text"
+          name="location"
+          id="location"
+          placeholder="location"
+        />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+
+
+    <div class="weatherInfo">
+      <h2 id="city">Vancouver</h2>
+      <h5 id="weatherDescription">Sunny</h5>
+      <h1 id="currentTemp">30&#xb0 C</h1>
+      <ul>
+        <li><span class="propertyName">Wind speed </span><span class="propertyValue" id="windSpeed">5km/hr</span></li>
+        <li><span class="propertyName">Wind Direction </span><span class="propertyValue" id="windDirection">NE</span></li>
+        <li><span class="propertyName">Max Temp </span><span class="propertyValue" id="maxTemp">35&#xb0 C</span></li>
+      </ul>
+    </div>
+
   </body>
 </html>
