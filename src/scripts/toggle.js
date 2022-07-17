@@ -1,4 +1,4 @@
-import { currentLocation } from "..";
+import { currentLocation } from "../index";
 import { renderDom } from "./domRendering";
 
 let temperature = "celcius";

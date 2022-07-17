@@ -1,5 +1,3 @@
-// I dont think I actually need this.
-
 class cityWeather {
   constructor(
     city,
