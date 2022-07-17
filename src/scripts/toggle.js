@@ -1,3 +1,6 @@
+import { currentLocation } from "..";
+import { renderDom } from "./domRendering";
+
 let temperature = "celcius";
 
 function celsOrFahr() {
@@ -6,15 +9,22 @@ function celsOrFahr() {
     temperature === "celcius"
       ? (temperature = "fahrenheit")
       : (temperature = "celcius");
+    renderDom(currentLocation);
   });
 }
 
 /// hmm need to think about this... this would work only after acquiring data
-function convertCtoF(data) {
+function convertToProperTemp(data) {
   if (temperature === "celcius") {
-    return data;
-  } else {
+    let convertedAmount = (data - 273.15).toFixed(1);
+    convertedAmount += "\u00B0 C";
+    return convertedAmount;
+  } else if (temperature === "fahrenheit") {
+    let convertedAmount = ((data - 273.15) * (9 / 5) + 32).toFixed(1);
+    convertedAmount += "\u00B0 F";
+
+    return convertedAmount;
   }
 }
 
-export { celsOrFahr, temperature };
+export { convertToProperTemp, temperature, celsOrFahr };

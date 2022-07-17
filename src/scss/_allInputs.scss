@@ -1,0 +1,46 @@
+@import "./variables";
+
+.allInputs {
+  width: 100vw;
+  height: 10vh;
+}
+
+div.mylabel {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.formContainer {
+  position: absolute;
+  top: 10vh;
+  width: 100vw;
+  & #form {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+  }
+}
+
+#location {
+  font-size: size(large);
+  width: 40%;
+  border-radius: 8em;
+  padding-left: 1em;
+  &:focus {
+    background-color: $color-lightPurp;
+  }
+  &::placeholder {
+    font-weight: size(large);
+    font-style: italic;
+  }
+}
+
+button {
+  width: 6em;
+  border-radius: 8em;
+  background-color: $color-lightTeak;
+  &:hover {
+    cursor: pointer;
+  }
+}

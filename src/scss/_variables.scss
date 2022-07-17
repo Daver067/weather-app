@@ -1,0 +1,36 @@
+$font-color: black;
+$color-darkTeal: #587b7f;
+$color-lightTeak: #afece7;
+$color-peach: #ffcaaf;
+$color-darkPurp: #1c0221;
+$color-lightPurp: #dcd1d8;
+$font-sizes: (
+  "xsmall": 10px,
+  "small": 12px,
+  "large": 20px,
+  "xlarge": 24px,
+);
+
+$font-weights: (
+  "regular": 400,
+  "medium": 500,
+  "bold": 700,
+);
+$test-border: 1px solid black;
+
+//functions
+@function weight($weight_name) {
+  @return map-get($font-weights, $weight_name);
+}
+//To use this font-weight: weight(bold);
+
+@function size($size-name) {
+  @return map-get($font-sizes, $size-name);
+}
+
+@mixin flexCenter() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+//to use this: .body { @include flexCenter();}

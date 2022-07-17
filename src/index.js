@@ -1,12 +1,20 @@
-import { celsOrFahr } from "./scripts/toggle";
 import "./style.scss";
+
+import { cityWeather } from "./scripts/cityWeatherClass";
+import { renderDom } from "./scripts/domRendering";
+import { celsOrFahr } from "./scripts/toggle";
+import { changeBackground } from "./scripts/backgroundChanger";
+
+let currentLocation = null;
+
+getWeatherData("Vancouver");
 
 (function addListenerToSubmit() {
   const form = document.getElementById("form");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const Location = getLocationData();
-    const weatherInfo = getWeatherData(Location);
+    getWeatherData(Location);
   });
 })();
 
@@ -17,30 +25,39 @@ function getLocationData() {
 }
 
 async function getWeatherData(location) {
-  let weatherData = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=eca235609988118b53bb8dd9a90783c4&units=metric`,
-    { mode: "cors" }
-  );
-  weatherData = await weatherData.json();
-  const MyInfo = filterToUseableData(weatherData);
-  updateDom(MyInfo);
+  try {
+    let weatherData = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=eca235609988118b53bb8dd9a90783c4`,
+      { mode: "cors" }
+    );
+
+    weatherData = await weatherData.json();
+
+    changeBackground(weatherData.weather[0].id);
+    const cityClass = filterToUseableData(weatherData);
+    currentLocation = cityClass;
+    renderDom(cityClass);
+  } catch (err) {
+    console.log(err);
+    return;
+  } finally {
+  }
 }
 
 function filterToUseableData(Data) {
-  let returnData = {};
-  returnData.city = Data.name;
-  returnData.weatherDescription = Data.weather[0].description;
-  returnData.currentTemp = Data.main.temp;
-  returnData.maxTemp = Data.main.temp_max;
-  returnData.windSpeed = Data.wind.speed;
-  returnData.windDirection = Data.wind.deg;
-  return returnData;
+  let cityAndCountry = `${Data.name}, ${Data.sys.country}`;
+  let cityWeatherClass = new cityWeather(
+    cityAndCountry,
+    Data.weather[0].description,
+    Data.main.temp,
+    Data.main.temp_max,
+    Data.wind.speed,
+    Data.wind.deg
+  );
+  return cityWeatherClass;
 }
 
-function updateDom(data) {
-  console.log(`update dom this this info: `);
-  console.log(data);
-}
 celsOrFahr();
-
 //eca235609988118b53bb8dd9a90783c4
+
+export { currentLocation };

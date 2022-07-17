@@ -16,23 +16,5 @@ class cityWeather {
     this.windSpeed = windSpeed;
     this.windDirection = windDirection;
   }
-
-  get city() {
-    return this.city;
-  }
-  get weatherDescription() {
-    return this.weatherDescription;
-  }
-  get currentTemp() {
-    return this.currentTemp;
-  }
-  get maxTemp() {
-    return this.maxTemp;
-  }
-  get windSpeed() {
-    return this.windSpeed;
-  }
-  get windDirection() {
-    return this.windDirection;
-  }
 }
+export { cityWeather };
